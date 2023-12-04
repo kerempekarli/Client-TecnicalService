@@ -11,21 +11,17 @@ const AddDevicesModal = ({ showModal, closeModal }) => {
 
   const handleCustomerFound = ({ customerId }) => {
     setCustomerId(customerId);
-    // Müşteri bulunduğunda bir sonraki adıma geç
     setStep(3);
   };
 
   const handleCustomerAdded = ({ customerId }) => {
     setCustomerId(customerId);
-    // Müşteri eklendikten sonra bir sonraki adıma geç
-    setStep(2);
+    setStep(3);
   };
 
   const handleAddDeviceSubmit = () => {
-    // 3. Adımda yapılacak işlemler
-    // Burada gerekirse başka işlemler de yapabilirsiniz.
-    // Örneğin, sayfayı yeniden yükleme veya başka bir işleme geçiş yapabilirsiniz.
     closeModal();
+    // 3. Adımda yapılacak işlemler
   };
 
   return (
@@ -34,7 +30,7 @@ const AddDevicesModal = ({ showModal, closeModal }) => {
         showModal ? "" : "hidden"
       }`}
     >
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md">
         {step === 1 && (
           <CustomerInfoForm
             onCustomerFound={handleCustomerFound}

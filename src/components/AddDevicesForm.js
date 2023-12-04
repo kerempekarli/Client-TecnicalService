@@ -46,33 +46,66 @@ const AddDevicesForm = ({ customerId, onSubmit }) => {
   };
 
   return (
-    <form className="text-green-500" onSubmit={handleSubmit}>
-      <h2>Step 3: Add Devices</h2>
-      <p>Customer ID: {customerId}</p>
-      <label>Device Brand:</label>
-      <input
-        type="text"
-        value={deviceBrand}
-        onChange={(e) => setDeviceBrand(e.target.value)}
-      />
-      <label>Device Model:</label>
-      <input
-        type="text"
-        value={deviceModel}
-        onChange={(e) => setDeviceModel(e.target.value)}
-      />
-      <label>Device Serial Number:</label>
-      <input
-        type="text"
-        value={deviceSerialNumber}
-        onChange={(e) => setDeviceSerialNumber(e.target.value)}
-      />
-      <label>Issue Description:</label>
-      <textarea
-        value={deviceIssueDescription}
-        onChange={(e) => setDeviceIssueDescription(e.target.value)}
-      />
-      <button type="submit">Submit</button>
+    <form
+      className="max-w-md mx-auto bg-white p-8 text-black border rounded-md shadow-md mt-6"
+      onSubmit={handleSubmit}
+    >
+      <h2 className="text-2xl text-green-500 mb-4">Step 3: Add Devices</h2>
+      {/* <p className="text-gray-600">Customer ID: {customerId}</p> */}
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-600">
+          Device Brand:
+        </label>
+        <input
+          type="text"
+          className="mt-1 p-2 w-full border rounded-md"
+          value={deviceBrand}
+          onChange={(e) => setDeviceBrand(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-600">
+          Device Model:
+        </label>
+        <input
+          type="text"
+          className="mt-1 p-2 w-full border rounded-md"
+          value={deviceModel}
+          onChange={(e) => setDeviceModel(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-600">
+          Device Serial Number:
+        </label>
+        <input
+          type="text"
+          className="mt-1 p-2 w-full border rounded-md"
+          value={deviceSerialNumber}
+          onChange={(e) => setDeviceSerialNumber(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-600">
+          Issue Description:
+        </label>
+        <textarea
+          className="mt-1 p-2 w-full border rounded-md"
+          value={deviceIssueDescription}
+          onChange={(e) => setDeviceIssueDescription(e.target.value)}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:shadow-outline-green active:bg-green-700"
+      >
+        Submit
+      </button>
     </form>
   );
 };

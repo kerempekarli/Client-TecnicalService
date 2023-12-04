@@ -17,6 +17,16 @@ export default function layout({ children }) {
               Çalışan Ekle
             </div>
           </Link>
+          <Link href="/management/devices">
+            <div className="text-white cursor-pointer border-b-2 border-transparent hover:border-white">
+              Cihazlar
+            </div>
+          </Link>
+          <Link href="/management/employees">
+            <div className="text-white cursor-pointer border-b-2 border-transparent hover:border-white">
+              Profesyoneller
+            </div>
+          </Link>
           {/* Diğer sayfa linkleri buraya eklenebilir */}
         </div>
       </div>

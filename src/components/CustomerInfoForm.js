@@ -1,11 +1,18 @@
 // components/CustomerInfoForm.js
 
 "use client";
-
 import { useState } from "react";
 
 const CustomerInfoForm = ({ onCustomerFound, onCustomerNotFound }) => {
   const [email, setEmail] = useState("");
+
+  const handleCustomerFound = ({ customerId }) => {
+    onCustomerFound({ customerId });
+  };
+
+  const handleCustomerAdded = ({ customerId }) => {
+    onCustomerAdded({ customerId });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,34 +30,52 @@ const CustomerInfoForm = ({ onCustomerFound, onCustomerNotFound }) => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        onCustomerNotFound();
+        console.error("Email not found, triggering error");
+        return;
       }
 
-      const isCustomerFound = await response.json(); // API'den dönen veriye göre müşteri bulunup bulunmadığı kontrol ediliyor
+      const isCustomerFound = await response.json();
 
       console.log("CUSTOMER RESPONSE", isCustomerFound);
 
       if (isCustomerFound) {
-        onCustomerFound({ customerId: isCustomerFound.id });
+        handleCustomerFound({ customerId: isCustomerFound.id });
       } else {
         onCustomerNotFound();
       }
     } catch (error) {
       console.error("API call failed:", error);
-      // Hata durumunda gerekli işlemleri yapabilirsiniz.
     }
   };
 
   return (
-    <form className="text-green-500" onSubmit={handleSubmit}>
-      <h2>Step 1: Customer Information</h2>
-      <label>Email:</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button type="submit">Next</button>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto text-black p-6 bg-white rounded-md shadow-md mt-6"
+    >
+      <h2 className="text-2xl text-green-500 mb-4 font-semibold">
+        Customer Information
+      </h2>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-600">
+          Email:
+        </label>
+        <input
+          type="email"
+          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-green-500 outline-none"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:shadow-outline-green active:bg-green-700"
+      >
+        Next
+      </button>
     </form>
   );
 };
