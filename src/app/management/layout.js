@@ -27,6 +27,11 @@ export default function layout({ children }) {
               Profesyoneller
             </div>
           </Link>
+          <Link href="/management/customers">
+            <div className="text-white cursor-pointer border-b-2 border-transparent hover:border-white">
+              Müşteriler
+            </div>
+          </Link>
           {/* Diğer sayfa linkleri buraya eklenebilir */}
         </div>
       </div>

@@ -2,13 +2,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import AddProcessModal from "../../../components/AddProcessModal";
 
 const DeviceDetailPage = () => {
   const router = useRouter();
   const { id } = useParams();
   const [device, setDevice] = useState(null);
-
-  console.log(id);
+  const [isAddProcessModalOpen, setAddProcessModalOpen] = useState(false);
 
   useEffect(() => {
     // Burada API'den cihaz detaylarını çekmek için bir API çağrısı yapabilirsiniz
@@ -23,6 +23,21 @@ const DeviceDetailPage = () => {
 
     // Şu anki durumu simüle etmek için sabit bir veri kullanıyoruz
   }, [id]);
+
+  const handleAddProcessClick = () => {
+    setAddProcessModalOpen(true);
+  };
+
+  const handleAddProcessModalClose = () => {
+    setAddProcessModalOpen(false);
+  };
+
+  const handleProcessAdded = (addedProcess) => {
+    // Burada yapılacak işlemler, eklenen işlemin DeviceDetail sayfasına yansıtılması gibi
+    console.log("Process added:", addedProcess);
+    // Yeni işlem eklenirse, gerekirse cihaz detaylarını güncelleyebilirsiniz.
+    // Örneğin: setDevice((prevDevice) => ({ ...prevDevice, processes: [addedProcess, ...prevDevice.processes] }));
+  };
 
   if (!device) {
     return <div>Loading...</div>;
@@ -68,8 +83,22 @@ const DeviceDetailPage = () => {
               : "N/A"}
           </p>
         </div>
-        {/* Diğer özellikleri buraya ekleyebilirsiniz */}
       </div>
+      <div className="mt-4">
+        <button
+          onClick={handleAddProcessClick}
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+        >
+          Add Process
+        </button>
+      </div>
+      {isAddProcessModalOpen && (
+        <AddProcessModal
+          onClose={handleAddProcessModalClose}
+          onProcessAdded={handleProcessAdded}
+          deviceId={id}
+        />
+      )}
     </div>
   );
 };
