@@ -74,14 +74,18 @@ const AddProcessForm = ({ onProcessAdded, onClose }) => {
         headers: { "Content-Type": "application/json" },
       });
 
+      console.log("DÖNEN RESPONSE", formData);
+
       if (response.ok) {
         const responseData = await response.json();
         onProcessAdded(responseData);
         onClose();
       } else {
+        console.log("Başarısız gönderme işlemi");
         console.error("Error adding process:", response.statusText);
       }
     } catch (error) {
+      console.log("Başarısız işlem");
       console.error("Error adding process:", error);
     }
 
