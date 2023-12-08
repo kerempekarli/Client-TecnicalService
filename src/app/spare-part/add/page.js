@@ -7,7 +7,6 @@ const AddSparePart = () => {
   const router = useRouter();
 
   const [sparePartData, setSparePartData] = useState({
-    stockID: 0, // Bu değeri doğru bir şekilde ayarlayın, otomatik artan bir değerse başlangıç değeri olabilir
     partName: "",
     brand: "",
     model: "",

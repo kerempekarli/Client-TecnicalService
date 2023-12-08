@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
-const AddProcessForm = ({ onProcessAdded, onClose }) => {
+const AddProcessForm = ({ onProcessAdded, onClose, deviceId }) => {
   const [formData, setFormData] = useState({
     description: "",
     status: "pending",
     stockID: null,
     usedQuantity: 0,
+    DeviceId: deviceId,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [spareParts, setSpareParts] = useState([]);
