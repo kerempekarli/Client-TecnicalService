@@ -35,6 +35,7 @@ const Login = () => {
       if (response.ok) {
         const userData = await response.json();
         console.log("UserData ", {
+          user: userData.user,
           id: userData.user.id,
           username: `${userData.user.firstName} ${userData.user.lastName}`,
           email: userData.user.email,
@@ -45,14 +46,14 @@ const Login = () => {
         dispatch(
           userActions.setUser({
             id: userData.user.id,
-            username: `${userData.user.fistName} ${userData.user.lastName}`,
+            username: `${userData.user.firstName} ${userData.user.lastName}`,
             email: userData.user.email,
             token: userData.token,
           })
         );
 
         toast.success("Giriş başarıyla tamamlandı!");
-        router.push("/");
+        router.push("/management");
         // İsteğin başarılı olması durumunda başka bir sayfaya yönlendirme veya gerekli işlemleri yapabilirsiniz.
       } else {
         toast.error("Giriş işlemi başarısız oldu.");

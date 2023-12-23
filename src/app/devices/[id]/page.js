@@ -112,7 +112,7 @@ const DeviceDetailPage = () => {
         <div className="mt-4">
           <button
             onClick={handleAddProcessClick}
-            className=" text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            className=" text-blue py-2 px-4 rounded-md hover:bg-blue-600 bg-blue-800 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
           >
             Add Process
           </button>

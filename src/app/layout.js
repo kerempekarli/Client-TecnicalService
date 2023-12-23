@@ -1,5 +1,7 @@
 "use client";
 import Modal from "react-modal";
+import Header from "../components/Header";
+import NavigationButtons from "../components/NavigationButton";
 
 // Root elementini belirle
 
@@ -22,7 +24,9 @@ const RootLayout = ({ children }) => (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ToastContainer></ToastContainer>
-          <div>{children}</div>
+          <Header></Header>
+          <NavigationButtons></NavigationButtons>
+          <div className="">{children}</div>
         </PersistGate>
       </Provider>
     </body>

@@ -1,4 +1,5 @@
 // components/AddDevicesModal.js
+
 "use client";
 import { useState } from "react";
 import AddCustomerForm from "./AddCustomerForm";
@@ -20,7 +21,7 @@ const AddDevicesModal = ({ showModal, closeModal }) => {
   };
 
   const handleAddDeviceSubmit = () => {
-    closeModal();
+    closeModal(); // Kapatma fonksiyonunu çağır
     // 3. Adımda yapılacak işlemler
   };
 
@@ -31,6 +32,14 @@ const AddDevicesModal = ({ showModal, closeModal }) => {
       }`}
     >
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md">
+        <button
+          type="button"
+          onClick={closeModal}
+          className="absolute text-3xl top-2 right-2 text-black hover:text-gray-700"
+        >
+          &times;
+        </button>
+
         {step === 1 && (
           <CustomerInfoForm
             onCustomerFound={handleCustomerFound}
