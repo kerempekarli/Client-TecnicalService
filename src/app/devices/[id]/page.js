@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import AddProcessModal from "../../../components/AddProcessModal";
 
 const DeviceDetailPage = () => {
+  console.log("sdagdsags");
   const router = useRouter();
   const { id } = useParams();
   const [device, setDevice] = useState(null);
@@ -21,7 +22,6 @@ const DeviceDetailPage = () => {
       .then((response) => response.json())
       .then((data) => setDevice(data))
       .catch((error) => console.error("Error fetching device details:", error));
-
     // Şu anki durumu simüle etmek için sabit bir veri kullanıyoruz
   }, [id]);
 

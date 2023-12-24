@@ -20,6 +20,7 @@ const DevicesPage = () => {
         }
         const devicesData = await devicesResponse.json();
         setDevices(devicesData);
+        console.log(devicesData);
       } catch (error) {
         console.error("Error fetching devices:", error);
       }
@@ -124,6 +125,7 @@ const DevicesPage = () => {
             <th className="border border-gray-300 px-4 py-2">Status</th>
             <th className="border border-gray-300 px-4 py-2">Customer</th>
             <th className="border border-gray-300 px-4 py-2">Actions</th>
+            <th className="border border-gray-300 px-4 py-2">Employee</th>
             <th className="border border-gray-300 px-4 py-2">Detail</th>
           </tr>
         </thead>
@@ -160,6 +162,18 @@ const DevicesPage = () => {
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Assign
+                  </button>
+                )}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {device.Employee ? (
+                  `${device.Employee.firstName} ${device.Employee.lastName}`
+                ) : (
+                  <button
+                    onClick={() => handleAssignClick(device)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Assign Employee
                   </button>
                 )}
               </td>

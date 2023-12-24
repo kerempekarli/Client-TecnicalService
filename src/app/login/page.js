@@ -17,6 +17,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    console.log("LOGIN USER DATA ", email + " " + password);
+
     try {
       const response = await fetch(
         "http://localhost:3232/auth/login/employee",
