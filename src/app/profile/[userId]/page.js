@@ -165,7 +165,7 @@ const ChangePasswordForm = () => {
         <label className="block text-sm font-medium">New Password:</label>
         <input
           type="password"
-          className="mt-1 p-2 w-full border text-black rounded-md focus:outline-none focus:border-green-500 focus:ring focus:ring-green-200"
+          className="mt-1 p-2 w-full border focus:outline-none text-black rounded-md focus:outline-none focus:border-green-500 focus:ring focus:ring-green-200"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
@@ -176,7 +176,7 @@ const ChangePasswordForm = () => {
         </label>
         <input
           type="password"
-          className="mt-1 p-2 w-full border text-black rounded-md focus:outline-none focus:border-green-500 focus:ring focus:ring-green-200"
+          className="mt-1 p-2 w-full border outline-none text-black rounded-md focus:outline-none focus:border-green-500 focus:ring focus:ring-green-200"
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
@@ -184,7 +184,7 @@ const ChangePasswordForm = () => {
       <button
         type="button"
         onClick={handleChangePassword}
-        className="bg-green-500 text-black py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-200 active:bg-green-700"
+        className="bg-green-500 text-white hover:outline-none text-black py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-200 active:bg-green-700"
       >
         Change Password
       </button>

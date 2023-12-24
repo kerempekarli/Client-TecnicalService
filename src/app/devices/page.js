@@ -124,7 +124,6 @@ const DevicesPage = () => {
             </th>
             <th className="border border-gray-300 px-4 py-2">Status</th>
             <th className="border border-gray-300 px-4 py-2">Customer</th>
-            <th className="border border-gray-300 px-4 py-2">Actions</th>
             <th className="border border-gray-300 px-4 py-2">Employee</th>
             <th className="border border-gray-300 px-4 py-2">Detail</th>
           </tr>
@@ -153,27 +152,16 @@ const DevicesPage = () => {
                   ? `${device.Customer.firstName} ${device.Customer.lastName}`
                   : "N/A"}
               </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {device.Employee ? (
-                  "Assigned"
-                ) : (
-                  <button
-                    onClick={() => handleAssignClick(device)}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Assign
-                  </button>
-                )}
-              </td>
+
               <td className="border border-gray-300 px-4 py-2">
                 {device.Employee ? (
                   `${device.Employee.firstName} ${device.Employee.lastName}`
                 ) : (
                   <button
                     onClick={() => handleAssignClick(device)}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
-                    Assign Employee
+                    Assign
                   </button>
                 )}
               </td>

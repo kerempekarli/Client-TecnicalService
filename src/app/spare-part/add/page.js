@@ -47,7 +47,7 @@ const AddSparePart = () => {
       <h1 class="text-3xl font-semibold mb-4">Add New Spare Part</h1>
       <form onSubmit={handleSubmit} class="max-w-md mx-auto">
         <div class="mb-4">
-          <label for="partName" class="block text-sm font-medium text-gray-600">
+          <label for="partName" class="block text-sm font-medium text-gray-300">
             Part Name:
           </label>
           <input
@@ -56,7 +56,7 @@ const AddSparePart = () => {
             name="partName"
             value={sparePartData.partName}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <div class="mb-4">
@@ -69,7 +69,7 @@ const AddSparePart = () => {
             name="brand"
             value={sparePartData.brand}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <div class="mb-4">
@@ -82,7 +82,7 @@ const AddSparePart = () => {
             name="model"
             value={sparePartData.model}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <div class="mb-4">
@@ -95,7 +95,7 @@ const AddSparePart = () => {
             name="quantity"
             value={sparePartData.quantity}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <div class="mb-4">
@@ -111,7 +111,7 @@ const AddSparePart = () => {
             name="purchasePrice"
             value={sparePartData.purchasePrice}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <div class="mb-4">
@@ -127,7 +127,7 @@ const AddSparePart = () => {
             name="minStockLevel"
             value={sparePartData.minStockLevel}
             onChange={handleInputChange}
-            class="border border-gray-300 p-2 w-full mt-1"
+            class="border border-gray-300 p-2 w-full mt-1 outline-none"
           />
         </div>
         <button type="submit" class="bg-blue-500 text-white py-2 px-4">

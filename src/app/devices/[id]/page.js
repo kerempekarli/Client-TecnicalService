@@ -110,13 +110,23 @@ const DeviceDetailPage = () => {
         </div>
 
         <div className="mt-4">
-          <button
-            onClick={handleAddProcessClick}
-            className=" text-blue py-2 px-4 rounded-md hover:bg-blue-600 bg-blue-800 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-          >
-            Add Process
-          </button>
+          {device.status !== "Completed" ? (
+            <button
+              onClick={handleAddProcessClick}
+              className="text-blue py-2 px-4 rounded-md text-white hover:bg-blue-500 bg-blue-600 w-full focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Add Process
+            </button>
+          ) : (
+            <button
+              className="text-blue py-4 px-4 rounded-md text-white hover:bg-green-500 bg-green-600 w-full focus:outline-none focus:shadow-outline-blue active:bg-green-700 cursor-not-allowed"
+              disabled
+            >
+              Device Status Completed
+            </button>
+          )}
         </div>
+
         {isAddProcessModalOpen && (
           <AddProcessModal
             onClose={handleAddProcessModalClose}
@@ -125,7 +135,7 @@ const DeviceDetailPage = () => {
           />
         )}
 
-        <div className="text-3xl font-medium mt-20 mb-4 mx-5">Processes</div>
+        <div className="text-3xl font-medium mt-10 mb-4 mx-5">Processes</div>
         <table className="min-w-full  bg-white-800 text-black mb-20 border divide-y">
           <thead className="">
             <tr>
