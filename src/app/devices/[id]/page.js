@@ -11,7 +11,7 @@ const DeviceDetailPage = () => {
   const [device, setDevice] = useState(null);
   const [isAddProcessModalOpen, setAddProcessModalOpen] = useState(false);
   const [processesWithDetails, setProcessesWithDetails] = useState([]);
-
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   useEffect(() => {
     // Burada API'den cihaz detaylarını çekmek için bir API çağrısı yapabilirsiniz
     // Örneğin: GET request ile "/api/devices/${id}" endpoint'ine istek gönderilebilir
@@ -62,6 +62,48 @@ const DeviceDetailPage = () => {
     // Örneğin: setDevice((prevDevice) => ({ ...prevDevice, processes: [addedProcess, ...prevDevice.processes] }));
   };
 
+  const handleStatusChange = async (newStatus) => {
+    try {
+      // API'ye PATCH isteği yaparak cihazın durumunu güncelle
+      const response = await fetch(`http://localhost:3232/devices/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: newStatus,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error updating device status");
+      }
+
+      // Başarılı güncelleme mesajı
+      console.log("Device status updated successfully");
+
+      // Cihaz detaylarını yeniden çek
+      fetch(`http://localhost:3232/devices/${id}`)
+        .then((response) => response.json())
+        .then((data) => setDevice(data))
+        .catch((error) =>
+          console.error("Error fetching updated device details:", error)
+        );
+    } catch (error) {
+      console.error("Error updating device status:", error);
+    } finally {
+      // Modal'ı kapat
+      setIsStatusModalOpen(false);
+    }
+  };
+  const handleOpenStatusModal = () => {
+    setIsStatusModalOpen(true);
+  };
+
+  const handleCloseStatusModal = () => {
+    setIsStatusModalOpen(false);
+  };
+
   if (!device) {
     return <div>Loading...</div>;
   }
@@ -108,6 +150,25 @@ const DeviceDetailPage = () => {
             </p>
           </div>
         </div>
+        {device.status != "Completed" && (
+          <div className="mt-4">
+            {device.status !== "Completed" ? (
+              <button
+                onClick={handleOpenStatusModal}
+                className="text-blue py-2 px-4 rounded-md text-white hover:bg-green-500 bg-green-600 w-full focus:outline-none focus:shadow-outline-green active:bg-green-700"
+              >
+                Change Status
+              </button>
+            ) : (
+              <button
+                className="text-blue py-4 px-4 rounded-md text-white hover:bg-green-500 bg-green-600 w-full focus:outline-none focus:shadow-outline-blue active:bg-green-700 cursor-not-allowed"
+                disabled
+              >
+                Device Status Completed
+              </button>
+            )}
+          </div>
+        )}
 
         <div className="mt-4">
           {device.status !== "Completed" ? (
@@ -126,7 +187,6 @@ const DeviceDetailPage = () => {
             </button>
           )}
         </div>
-
         {isAddProcessModalOpen && (
           <AddProcessModal
             onClose={handleAddProcessModalClose}
@@ -134,7 +194,6 @@ const DeviceDetailPage = () => {
             deviceId={id}
           />
         )}
-
         <div className="text-3xl font-medium mt-10 mb-4 mx-5">Processes</div>
         <table className="min-w-full  bg-white-800 text-black mb-20 border divide-y">
           <thead className="">
@@ -197,6 +256,33 @@ const DeviceDetailPage = () => {
           </tbody>
         </table>
       </div>
+      {isStatusModalOpen && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white p-4 w-full max-w-sm rounded-md">
+            <h2 className="text-xl font-bold mb-4">Select Status</h2>
+            <ul>
+              {["Pending", "In Progress", "Completed"].map((status) => (
+                <li key={status} className="mb-2">
+                  <button
+                    onClick={() => handleStatusChange(status)}
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full ${
+                      device.status === status ? "bg-blue-700" : ""
+                    }`}
+                  >
+                    {status}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleCloseStatusModal}
+              className="mt-4 w-full bg-gray-500 p-2 rounded-md"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

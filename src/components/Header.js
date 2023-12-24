@@ -3,6 +3,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../redux/reducers/userReducer";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,9 +17,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4">
+    <header className="bg-gray-800 text-white p-4 flex">
+      <button onClick={() => router.back()} className="text-5xl ml-5 absolute items-center">
+        &lt;
+      </button>
       <div className="container mx-auto flex justify-between items-center">
-        <div>
+        <div className="flex items-center">
           <h1 className="text-2xl font-bold">AppleRepair</h1>
         </div>
         <div>
@@ -33,8 +38,11 @@ const Header = () => {
               </button>
             </div>
           ) : (
-            // Render login or other auth-related components if user is not logged in
-            <p>Not Logged In</p>
+            <Link href="/login">
+              <div className=" bg-green-500 px-10 rounded-md py-2 text-2xl my-2 text-white">
+                Login
+              </div>
+            </Link>
           )}
         </div>
       </div>
